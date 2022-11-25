@@ -14,12 +14,8 @@ cv::Mat map_img;
 
 
 void OnSubscribeGPSMsgs(const sensor_msgs::NavSatFixConstPtr & msg) {
-    std::cout<<"Subscribed GPS: latitude: "<<msg->latitude<<", longitude: "<<msg->longitude<<std::endl;
-
     double latitude = msg->latitude * M_PI/180.0;
     double longitude = msg->longitude * M_PI/180.0;
-
-    std::cout<<"Cov: "<<msg->position_covariance[0]<<std::endl;
 
     long zone;
     char hemisphere;
@@ -37,11 +33,11 @@ void OnSubscribeGPSMsgs(const sensor_msgs::NavSatFixConstPtr & msg) {
     cv::circle(img_show, pixel_xy[0], msg->position_covariance[0], cv::Scalar(0, 0, 0), 2);
 
 
-    std::cout<<pixel_xy[0].x<<", "<<pixel_xy[0].y<<std::endl;
+    cv::Point2d crop_size(100, 100);
+    cv::Mat cropped_img = img_show(cv::Rect(pixel_xy[0] - crop_size, pixel_xy[0] + crop_size));
 
-    cv::imshow("Test", img_show);
+    cv::imshow("Test", cropped_img);
     cv::waitKey(1);
-
 
 }
 
