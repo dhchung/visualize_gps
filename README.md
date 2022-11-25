@@ -15,5 +15,5 @@ Capture the image at geoplaner site and save it in /satellite_img/img.png
     - Topic type is sensor_msgs::NavSatFix
 
 <p align='center'>
-    <img src="./doc/demo.gif" alt="drawing" width="800"/>
+    <img src="./doc/demo.gif" alt="drawing" width="400"/>
 </p>
